@@ -64,8 +64,14 @@ def multiply_polynomials(p, q):
     y = FFT(p, omega)
     z = FFT(q, omega)
     st.write("\n3️⃣ Multiplicação no domínio da frequência:")
-    print_matrix(y, "FFT(A(x))")
-    print_matrix(z, "FFT(B(x))")
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        print_matrix(y, "FFT(A(x))")
+
+    with col2:
+        print_matrix(z, "FFT(B(x))")
 
     m = [y[i] * z[i] for i in range(n)]
     print_matrix(m, "\n3️⃣ Multiplicação no domínio da frequência:")
