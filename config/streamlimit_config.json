@@ -1,0 +1,8 @@
+{ 
+  "max_streams": 5, 
+  "timeout": 60, 
+  "retry_limit": 3, 
+  "retry_interval": 5, 
+  "max_data_size": 1000, 
+  "log_level": "INFO" 
+} 
