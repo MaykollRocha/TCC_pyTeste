@@ -1,6 +1,8 @@
 import cmath
 import math
 import streamlit as st
+import matplotlib.pyplot as plt
+import numpy as np
 
 def print_matrix(matrix, name):
     st.write(f"\n{name}:")
@@ -71,6 +73,9 @@ def multiply_polynomials(p, q):
     result = inverse_FFT(m, omega_inv)
     print_matrix(result, "\n4️⃣ Aplicação da IFFT para recuperar os coeficientes:")
 
+    # Plotting FFT and IFFT
+    plot_fft_ifft(y, m, result)
+
     return [round(x.real) for x in result]
 
 def integer_to_polynomial(x, base=10):
@@ -100,6 +105,26 @@ def fft_multiply_integers(x, y, base=10):
     product_coeffs = multiply_polynomials(p, q)
 
     return polynomial_to_integer(product_coeffs, base)
+
+def plot_fft_ifft(fft_result, fft_multiplied, ifft_result):
+    # FFT Magnitude Plot
+    fft_magnitude = [abs(x) for x in fft_result]
+    plt.figure(figsize=(12, 6))
+    plt.subplot(1, 2, 1)
+    plt.plot(fft_magnitude)
+    plt.title('Magnitude da FFT')
+    plt.xlabel('Índice')
+    plt.ylabel('Magnitude')
+
+    # IFFT Magnitude Plot
+    ifft_magnitude = [abs(x) for x in ifft_result]
+    plt.subplot(1, 2, 2)
+    plt.plot(ifft_magnitude)
+    plt.title('Magnitude da IFFT')
+    plt.xlabel('Índice')
+    plt.ylabel('Magnitude')
+
+    st.pyplot(plt)
 
 # Interface com o usuário no Streamlit
 st.title("Multiplicação de Inteiros via FFT")
