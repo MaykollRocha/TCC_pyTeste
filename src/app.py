@@ -89,6 +89,8 @@ def polynomial_to_integer(coeffs, base=10):
     return result
 
 def fft_multiply_integers(x, y, base=10):
+    if x == 1 and y == 1:
+        return 1
     p = integer_to_polynomial(x, base)
     q = integer_to_polynomial(y, base)
     st.write("1️⃣ Representação como polinômios:")
